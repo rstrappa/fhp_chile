@@ -1,222 +1,127 @@
-<div class="row">
-    <div class="col-md-12">
-        <div class="copyright">
-          <?php $hoy = getDate(); ?>
-            <p>Derechos Reservados FHP <?php echo $hoy['year'] ?> </p>
-        </div>
-    </div>
-</div>
-<input type="hidden" id="m" value="<?php echo $_REQUEST['m'] ?>">
-</div>
-</div>
-</div>
-<!-- END MAIN CONTENT-->
-<!-- END PAGE CONTAINER-->
-</div>
-
-</div>
-
-<!-- Jquery JS-->
-<script src="assets/vendor/jquery-3.2.1.min.js"></script>
-<!-- Bootstrap JS-->
-<script src="assets/vendor/bootstrap-4.1/popper.min.js"></script>
-<script src="assets/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-<!-- Vendor JS       -->
-<script src="assets/vendor/slick/slick.min.js">
-</script>
-<script src="assets/vendor/wow/wow.min.js"></script>
-<script src="assets/vendor/animsition/animsition.min.js"></script>
-<script src="assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-</script>
-<script src="assets/vendor/counter-up/jquery.waypoints.min.js"></script>
-<script src="assets/vendor/counter-up/jquery.counterup.min.js">
-</script>
-<script src="assets/vendor/circle-progress/circle-progress.min.js"></script>
-<script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="assets/vendor/chartjs/Chart.bundle.min.js"></script>
-<script src="assets/vendor/select2/select2.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
-<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
-<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
-<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
- <script src="assets/js/firma.js" charset="utf-8"></script>
-<script src="assets/js/miJs.js"></script>
-<!-- Main JS-->
-<script src="assets/js/main.js"></script>
-
-<script src="assets/js/datatable.js"></script>
-<script src="assets/js/dtResponsive.js"></script>
-<script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js" charset="utf-8"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script>
-
-$(document).ready(function() {
-    $('#example').DataTable({
-      "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
-        },
-      responsive: true
-    });
-});
-
-var m = $("#m").val();
-if (m == 'ExitoEnviar')
-{
-  Swal.fire(
-  'Se acepto al conductor!',
-  'Se le envio un correo con sus credenciales!',
-  'success'
-  )
-}
-if (m == 'ExitoCambiarPassword') {
-  Swal.fire(
-  'Exito al cambiar la contraseña!',
-  '',
-  'success'
-)
-}
-if (m == 'BorroTodo') {
-  Swal.fire(
-  'Exito al eliminar todo!',
-  'Se eliminaron los conductores, usuarios y vehiculos',
-  'success'
-)
-}
-if (m == 'ExitoAuto') {
-  Swal.fire(
-  'Exito al agregar el auto!',
-  '',
-  'success'
-)
-}
-if (m=='ErrorAuto') {
-  Swal.fire({
-      type: 'error',
-      title: 'Oops...',
-      text: 'Error al ingresar el auto'
-    });
-}
-if (m=='ErrorFoto') {
-  Swal.fire({
-      type: 'error',
-      title: 'Oops...',
-      text: 'Error al subir la foto'
-    });
-}
-if (m == 'ExitoPassword')
-{
-  Swal.fire(
-  'Exito al cambiar la contraseña!',
-  '',
-  'success'
-)
-}
-if (m == 'ExitoSubirOrden')
-{
-  Swal.fire(
-  'Exito al subr la orden de compra!',
-  '',
-  'success'
-)
-}
-
-if (m=='ErrorsubirOrden') {
-  Swal.fire({
-    icon: 'error',
-  title: 'Oops...',
-      text: 'Error al subir la foto'
-    });
-}
-
-if (m == 'RegistroEmpresa')
-{
-  Swal.fire(
-  'Exito al registrar la empresa',
-  '',
-  'success'
-)
-}
-if (m == 'RegistroSucursal')
-{
-  Swal.fire(
-  'Exito al registrar la sucursal',
-  '',
-  'success'
-)
-}
-if (m == 'EliminoSucursal')
-{
-  Swal.fire(
-  'Se elimino la sucursal',
-  '',
-  'success'
-)
-}
-if (m == 'ExitoAsignar')
-{
-  Swal.fire(
-  'Se asigno la orden al vehiculo',
-  '',
-  'success'
-)
-}
-if (m == 'Entrego')
-{
-  Swal.fire(
-  'Se entrego el producto',
-  '',
-  'success'
-)
-}
-if (m == 'NOEntrego')
-{
-  Swal.fire({
-    icon: 'error',
-  title: 'Oops...',
-      text: 'Error al entregar el producto'
-    });
-}
-if (m=='finalizo') {
-  Swal.fire(
-  'Se finalizo el recorrido de entrega',
-  '',
-  'success'
-  )
-}
-$.post('acciones/jsonCantidadConductores.php',function(data){
-
-  $("#cantConductores").html(data);
-});
-
-$.post('acciones/jsonCantidadSolicitudes.php',function(data){
-  $("#cantSolicitudes").html(data);
-});
-
-$("#password2").keyup(function(){
-var p = $("#password").val();
-var p2 = $("#password2").val();
-  if (p == p2)
-  {
-    $("#btnActualizarPassword").css("display","block");
-  }
-  if (p != p2)
-  {
-    $("#btnActualizarPassword").css("display","none");
-  }
-});
-
-var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-  }
-
-  var id = $("#id_sesion").val();
-  $.post('acciones/filtrar_entregas.php',{id:id},function(data){
-    $("#divTabla").html(data);
-  });
-</script>
-</body>
-
-</html>
-<!-- end document-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script src="assets/js/datatable.js"></script>
+<script src="assets/js/dtResponsive.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js" charset="utf-8"></script>
+<script src="assets/js/miJs.js"></script>
+
+<script>
+$(document).ready(function() {
+  $("#loading").css("display","none");
+
+    $('#example').DataTable({
+      responsive: true
+    });
+
+});
+
+  $("#ch").click("click", function(){
+    if(!$("#ch").is(":checked"))
+    {
+      $("#licencia").prop("disabled",false);
+    }
+    else {
+      $("#licencia").prop("disabled",true);
+    }
+  });
+
+
+  $(document).ready(function()
+  {
+    var error = $("#error").val();
+    if (error == 1)
+    {
+      Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Error al ingresar'
+        });
+    }
+    if (error == 2)
+    {
+      Swal.fire(
+      'Exito al enviar datos',
+      'Se contactaran contigo',
+      'success'
+      );
+    }
+    });
+
+    function checkRut(rut) {
+    // Se quitan los puntos y los guiones mediante el metodo replace
+    var valor = rut.value.replace('.','');
+    valor = valor.replace('-','');
+
+    // Aislar Cuerpo y Dígito Verificador
+    var cuerpo = valor.slice(0,-1);
+    var dv = valor.slice(-1).toUpperCase();
+
+    // Formatear rut
+    rut.value = cuerpo +'-'+ dv;
+
+    // Si no cumple con el mínimo ej. (n.nnn.nnn)
+    if(cuerpo.length < 7) {
+		$("#fg_rut").addClass('has-error');
+        rut.setCustomValidity("RUT Incompleto");
+		return false;
+    }
+
+    // Calcular Dígito Verificador
+    var suma = 0;
+    var multiplo = 2;
+
+    // Para cada dígito del Cuerpo
+    for(var i=1;i<=cuerpo.length;i++) {
+
+        // Obtener su Producto con el Múltiplo Correspondiente
+        var index = multiplo * valor.charAt(cuerpo.length - i);
+
+        // Sumar al Contador General
+        suma = suma + index;
+
+        // Consolidar Múltiplo dentro del rango [2,7]
+        if(multiplo < 7) {
+            multiplo = multiplo + 1;
+        }else{
+            multiplo = 2;
+        }
+    }
+
+    // se calcula el dv con modulo 11
+    var dvEsperado = 11 - (suma % 11);
+
+    // Casos Especiales (0 y K)
+    if(dv == 'K'){
+        dv = 10;
+    }else{
+        dv=dv;
+    }
+    if(dv == 0){
+       dv = 11;
+    }else{
+       dv = dv;
+    }
+
+    // Validar que el Cuerpo coincide con su Dígito Verificador
+    if(dvEsperado != dv){
+        rut.setCustomValidity("RUT Inválido");
+		$("#fg_rut").addClass('has-error');
+		return false;
+    }
+
+
+
+   //se resetea el setCustomValidity en caso de haber ocurrido alguna ocurrencia en el if
+    rut.setCustomValidity('');
+}
+var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  }
+
+
+</script>
+</body>
+</html>

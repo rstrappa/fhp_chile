@@ -1,260 +1,545 @@
-.boton-login{
-  letter-spacing: 1px;
-font-size: 14px;
-color: #2313FF;
-border: 2px solid #240cff;
-padding: 12px 20px;
-border-radius: 4px;
-font-weight: 600;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-background: white;
-transition: 0.3s;
-}
-.boton-login-2:hover {
-    color:white;
-    background-color: blue;
-    cursor: pointer;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.boton-login-2 span {
-    font-size: 22px;
-    vertical-align: middle;
-}
-
-
-/*Check bonio*/
-
-.toggleButton {
-  cursor: pointer;
-  display: block;
-  -webkit-transform-origin: 50% 50%;
-          transform-origin: 50% 50%;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  transition: -webkit-transform .14s ease;
-  transition: transform .14s ease;
-  transition: transform .14s ease, -webkit-transform .14s ease;
-}
-.toggleButton:active {
-  -webkit-transform: rotateX(30deg);
-          transform: rotateX(30deg);
-}
-.toggleButton input {
-  display: none;
-}
-.toggleButton input + div {
-  border: 1px solid white;
-  border-radius: 4px;
-  position: relative;
-  width: 38px;
-  height: 38px;
-}
-.toggleButton input + div svg {
-  fill: none;
-  stroke-width: 3.6;
-  stroke: grey;
-  width: 44px;
-  height: 44px;
-  display: block;
-  position: absolute;
-  left: -3px;
-  top: -3px;
-  right: -3px;
-  bottom: -3px;
-  z-index: 1;
-
-  stroke-dasharray: 0 162.6 133 29.6;
-  transition: all .4s ease 0s;
-}
-.toggleButton input + div:before, .toggleButton input + div:after {
-  content: '';
-  width: 3px;
-  height: 16px;
-  background: #fff;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  border-radius: 5px;
-}
-.toggleButton input + div:before {
-  opacity: 0;
-  -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-          transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-  -webkit-animation: bounceInBefore .3s linear forwards .3s;
-          animation: bounceInBefore .3s linear forwards .3s;
-}
-.toggleButton input + div:after {
-  opacity: 0;
-  -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-          transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-  -webkit-animation: bounceInAfter .3s linear forwards .3s;
-          animation: bounceInAfter .3s linear forwards .3s;
-}
-.toggleButton input:checked + div svg {
-  stroke-dashoffset: 162.6;
-  stroke-dasharray: 0 162.6 28 134.6;
-  transition: all .4s ease .2s;
-}
-.toggleButton input:checked + div:before {
-  opacity: 0;
-  -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-          transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-  -webkit-animation: bounceInBeforeDont .3s linear forwards 0s;
-          animation: bounceInBeforeDont .3s linear forwards 0s;
-}
-.toggleButton input:checked + div:after {
-  opacity: 0;
-  -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-          transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-  -webkit-animation: bounceInAfterDont .3s linear forwards 0s;
-          animation: bounceInAfterDont .3s linear forwards 0s;
-}
-
-@-webkit-keyframes bounceInBefore {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-            transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-  }
-  50% {
-    opacity: 0.9;
-    -webkit-transform: scale(1.1) translate(-50%, -50%) rotate(45deg);
-            transform: scale(1.1) translate(-50%, -50%) rotate(45deg);
-  }
-  80% {
-    opacity: 1;
-    -webkit-transform: scale(0.89) translate(-50%, -50%) rotate(45deg);
-            transform: scale(0.89) translate(-50%, -50%) rotate(45deg);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: scale(1) translate(-50%, -50%) rotate(45deg);
-            transform: scale(1) translate(-50%, -50%) rotate(45deg);
-  }
-}
-
-@keyframes bounceInBefore {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-            transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-  }
-  50% {
-    opacity: 0.9;
-    -webkit-transform: scale(1.1) translate(-50%, -50%) rotate(45deg);
-            transform: scale(1.1) translate(-50%, -50%) rotate(45deg);
-  }
-  80% {
-    opacity: 1;
-    -webkit-transform: scale(0.89) translate(-50%, -50%) rotate(45deg);
-            transform: scale(0.89) translate(-50%, -50%) rotate(45deg);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: scale(1) translate(-50%, -50%) rotate(45deg);
-            transform: scale(1) translate(-50%, -50%) rotate(45deg);
-  }
-}
-@-webkit-keyframes bounceInAfter {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-            transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-  }
-  50% {
-    opacity: 0.9;
-    -webkit-transform: scale(1.1) translate(-50%, -50%) rotate(-45deg);
-            transform: scale(1.1) translate(-50%, -50%) rotate(-45deg);
-  }
-  80% {
-    opacity: 1;
-    -webkit-transform: scale(0.89) translate(-50%, -50%) rotate(-45deg);
-            transform: scale(0.89) translate(-50%, -50%) rotate(-45deg);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: scale(1) translate(-50%, -50%) rotate(-45deg);
-            transform: scale(1) translate(-50%, -50%) rotate(-45deg);
-  }
-}
-@keyframes bounceInAfter {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-            transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-  }
-  50% {
-    opacity: 0.9;
-    -webkit-transform: scale(1.1) translate(-50%, -50%) rotate(-45deg);
-            transform: scale(1.1) translate(-50%, -50%) rotate(-45deg);
-  }
-  80% {
-    opacity: 1;
-    -webkit-transform: scale(0.89) translate(-50%, -50%) rotate(-45deg);
-            transform: scale(0.89) translate(-50%, -50%) rotate(-45deg);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: scale(1) translate(-50%, -50%) rotate(-45deg);
-            transform: scale(1) translate(-50%, -50%) rotate(-45deg);
-  }
-}
-@-webkit-keyframes bounceInBeforeDont {
-  0% {
-    opacity: 1;
-    -webkit-transform: scale(1) translate(-50%, -50%) rotate(45deg);
-            transform: scale(1) translate(-50%, -50%) rotate(45deg);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-            transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-  }
-}
-@keyframes bounceInBeforeDont {
-  0% {
-    opacity: 1;
-    -webkit-transform: scale(1) translate(-50%, -50%) rotate(45deg);
-            transform: scale(1) translate(-50%, -50%) rotate(45deg);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-            transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-  }
-}
-@-webkit-keyframes bounceInAfterDont {
-  0% {
-    opacity: 1;
-    -webkit-transform: scale(1) translate(-50%, -50%) rotate(-45deg);
-            transform: scale(1) translate(-50%, -50%) rotate(-45deg);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-            transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-  }
-}
-@keyframes bounceInAfterDont {
-  0% {
-    opacity: 1;
-    -webkit-transform: scale(1) translate(-50%, -50%) rotate(-45deg);
-            transform: scale(1) translate(-50%, -50%) rotate(-45deg);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-            transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-  }
-}
-/*Fin checkBonito*/
-
-
-.btn-success, .btn-success:disabled, .btn-success:hover
-{
-  color: #fff;
-    background-color: #0e17b6;
-    border-color: #0f17bb;
-
-}
+.linea
+{
+  width: 100%;
+  background-color: black;
+}
+.espacio
+{
+  margin-top:10px;
+}
+
+.bodyRegistro
+{
+  background-image: url("assets/img/fondos/fondo_registro.jpg");
+}
+
+.label
+{
+  color: blue;
+}
+.espaciado
+{
+  margin-top:30px;
+
+}
+
+.arribaa
+{
+  margin-top: -100px;
+}
+
+.nuevaClaseContacto
+{
+  position: absolute;
+    box-shadow: 10px 4px 40px rgba(0, 0, 0, 0.25);
+    width: 1138px;
+    height: 602px;
+}
+.nuevaClase
+{
+  display: block;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+}
+.nuevaClase2
+{
+  position: absolute;
+     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+     width: 1097px;
+     height: 1350px;
+}
+.toggleButton {
+  cursor: pointer;
+  display: block;
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  transition: -webkit-transform .14s ease;
+  transition: transform .14s ease;
+  transition: transform .14s ease, -webkit-transform .14s ease;
+}
+.toggleButton:active {
+  -webkit-transform: rotateX(30deg);
+          transform: rotateX(30deg);
+}
+.toggleButton input {
+  display: none;
+}
+.toggleButton input + div {
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  position: relative;
+  width: 38px;
+  height: 38px;
+}
+.toggleButton input + div svg {
+  fill: none;
+  stroke-width: 3.6;
+  stroke: grey;
+  width: 44px;
+  height: 44px;
+  display: block;
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  right: -3px;
+  bottom: -3px;
+  z-index: 1;
+
+  stroke-dasharray: 0 162.6 133 29.6;
+  transition: all .4s ease 0s;
+}
+.toggleButton input + div:before, .toggleButton input + div:after {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 5px;
+}
+.toggleButton input + div:before {
+  opacity: 0;
+  -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
+          transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
+  -webkit-animation: bounceInBefore .3s linear forwards .3s;
+          animation: bounceInBefore .3s linear forwards .3s;
+}
+.toggleButton input + div:after {
+  opacity: 0;
+  -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
+          transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
+  -webkit-animation: bounceInAfter .3s linear forwards .3s;
+          animation: bounceInAfter .3s linear forwards .3s;
+}
+.toggleButton input:checked + div svg {
+  stroke-dashoffset: 162.6;
+  stroke-dasharray: 0 162.6 28 134.6;
+  transition: all .4s ease .2s;
+}
+.toggleButton input:checked + div:before {
+  opacity: 0;
+  -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
+          transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
+  -webkit-animation: bounceInBeforeDont .3s linear forwards 0s;
+          animation: bounceInBeforeDont .3s linear forwards 0s;
+}
+.toggleButton input:checked + div:after {
+  opacity: 0;
+  -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
+          transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
+  -webkit-animation: bounceInAfterDont .3s linear forwards 0s;
+          animation: bounceInAfterDont .3s linear forwards 0s;
+}
+
+@-webkit-keyframes bounceInBefore {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
+            transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
+  }
+  50% {
+    opacity: 0.9;
+    -webkit-transform: scale(1.1) translate(-50%, -50%) rotate(45deg);
+            transform: scale(1.1) translate(-50%, -50%) rotate(45deg);
+  }
+  80% {
+    opacity: 1;
+    -webkit-transform: scale(0.89) translate(-50%, -50%) rotate(45deg);
+            transform: scale(0.89) translate(-50%, -50%) rotate(45deg);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1) translate(-50%, -50%) rotate(45deg);
+            transform: scale(1) translate(-50%, -50%) rotate(45deg);
+  }
+}
+
+@keyframes bounceInBefore {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
+            transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
+  }
+  50% {
+    opacity: 0.9;
+    -webkit-transform: scale(1.1) translate(-50%, -50%) rotate(45deg);
+            transform: scale(1.1) translate(-50%, -50%) rotate(45deg);
+  }
+  80% {
+    opacity: 1;
+    -webkit-transform: scale(0.89) translate(-50%, -50%) rotate(45deg);
+            transform: scale(0.89) translate(-50%, -50%) rotate(45deg);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1) translate(-50%, -50%) rotate(45deg);
+            transform: scale(1) translate(-50%, -50%) rotate(45deg);
+  }
+}
+@-webkit-keyframes bounceInAfter {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
+            transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
+  }
+  50% {
+    opacity: 0.9;
+    -webkit-transform: scale(1.1) translate(-50%, -50%) rotate(-45deg);
+            transform: scale(1.1) translate(-50%, -50%) rotate(-45deg);
+  }
+  80% {
+    opacity: 1;
+    -webkit-transform: scale(0.89) translate(-50%, -50%) rotate(-45deg);
+            transform: scale(0.89) translate(-50%, -50%) rotate(-45deg);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1) translate(-50%, -50%) rotate(-45deg);
+            transform: scale(1) translate(-50%, -50%) rotate(-45deg);
+  }
+}
+@keyframes bounceInAfter {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
+            transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
+  }
+  50% {
+    opacity: 0.9;
+    -webkit-transform: scale(1.1) translate(-50%, -50%) rotate(-45deg);
+            transform: scale(1.1) translate(-50%, -50%) rotate(-45deg);
+  }
+  80% {
+    opacity: 1;
+    -webkit-transform: scale(0.89) translate(-50%, -50%) rotate(-45deg);
+            transform: scale(0.89) translate(-50%, -50%) rotate(-45deg);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1) translate(-50%, -50%) rotate(-45deg);
+            transform: scale(1) translate(-50%, -50%) rotate(-45deg);
+  }
+}
+@-webkit-keyframes bounceInBeforeDont {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1) translate(-50%, -50%) rotate(45deg);
+            transform: scale(1) translate(-50%, -50%) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
+            transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
+  }
+}
+@keyframes bounceInBeforeDont {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1) translate(-50%, -50%) rotate(45deg);
+            transform: scale(1) translate(-50%, -50%) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
+            transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
+  }
+}
+@-webkit-keyframes bounceInAfterDont {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1) translate(-50%, -50%) rotate(-45deg);
+            transform: scale(1) translate(-50%, -50%) rotate(-45deg);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
+            transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
+  }
+}
+@keyframes bounceInAfterDont {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1) translate(-50%, -50%) rotate(-45deg);
+            transform: scale(1) translate(-50%, -50%) rotate(-45deg);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
+            transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
+  }
+}
+
+.body {
+  font-family: Roboto, Arial;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.body .dribbble {
+  position: fixed;
+  display: block;
+  right: 24px;
+  bottom: 24px;
+}
+.body .dribbble img {
+  display: block;
+  width: 76px;
+}
+
+
+
+/*Loader */
+
+#loading {
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   position: fixed;
+   display: none;
+   opacity: 0.7;
+   background-color: #fff;
+   z-index: 99;
+   text-align: center;
+display:none;
+}
+
+#loading-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+}
+
+
+/*Steps*/
+
+
+
+
+
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+}
+
+#msform fieldset .form-card {
+    background: white;
+    border: 0 none;
+    border-radius: 0px;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+    padding: 20px 40px 30px 40px;
+    box-sizing: border-box;
+    width: 94%;
+    margin: 0 3% 20px 3%;
+    position: relative
+}
+
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative
+}
+
+#msform fieldset:not(:first-of-type) {
+    display: none
+}
+
+#msform fieldset .form-card {
+    text-align: left;
+    color: #9E9E9E
+}
+
+#msform input,
+#msform textarea {
+    padding: 0px 8px 4px 8px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 25px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 16px;
+    letter-spacing: 1px
+}
+
+#msform input:focus,
+#msform textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: none;
+    font-weight: bold;
+    border-bottom: 2px solid skyblue;
+    outline-width: 0
+}
+
+#msform .action-button {
+    width: 100px;
+    background: skyblue;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px
+}
+
+#msform .action-button:hover,
+#msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px skyblue
+}
+
+#msform .action-button-previous {
+    width: 100px;
+    background: #616161;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px
+}
+
+#msform .action-button-previous:hover,
+#msform .action-button-previous:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #616161
+}
+
+select.list-dt {
+    border: none;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    padding: 2px 5px 3px 5px;
+    margin: 2px
+}
+
+select.list-dt:focus {
+    border-bottom: 2px solid skyblue
+}
+
+.card {
+    z-index: 0;
+    border: none;
+    border-radius: 0.5rem;
+    position: relative
+}
+
+.fs-title {
+    font-size: 25px;
+    color: #2C3E50;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: left
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey
+}
+
+#progressbar .active {
+    color: #000000
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 12px;
+    width: 25%;
+    float: left;
+    position: relative
+}
+
+#progressbar #account:before {
+    font-family: FontAwesome;
+    content: url("../../assets/img/svg/person.svg");
+}
+
+#progressbar #personal:before {
+    font-family: FontAwesome;
+    content: url("../../assets/img/svg/sedan-car-front1.svg");
+}
+#progressbar #licencia:before {
+    font-family: FontAwesome;
+    content: url("../../assets/img/svg/file.svg");
+}
+
+
+#progressbar #confirm:before {
+    font-family: FontAwesome;
+    content: "\f00c"
+}
+
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 18px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: skyblue
+}
+
+.radio-group {
+    position: relative;
+    margin-bottom: 25px
+}
+
+.radio {
+    display: inline-block;
+    width: 204;
+    height: 104;
+    border-radius: 0;
+    background: lightblue;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 8px 2px
+}
+
+.radio:hover {
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3)
+}
+
+.radio.selected {
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1)
+}
+
+.fit-image {
+    width: 100%;
+    object-fit: cover
+}

@@ -2,7 +2,7 @@
 require_once 'model/database.php';
 session_start();
 
-$controller = 'usuario';
+$controller = 'personas';
 
 if(!isset($_REQUEST['c']))
 {

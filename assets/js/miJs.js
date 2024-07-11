@@ -1,285 +1,274 @@
-$("#id_conductor").change(function(){
-  var id_conductor = $("#id_conductor").val();
-  $.post('acciones/traerEmpresasConductor.php',{id_conductor:id_conductor},function(data){
-    $("#empresaCo").html(data);
+$(document).ready(function(){
+
+var current_fs, next_fs, previous_fs; //fieldsets
+var opacity;
+
+$(".next").click(function(){
+
+current_fs = $(this).parent();
+next_fs = $(this).parent().next();
+
+//Add Class Active
+$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+//show the next fieldset
+next_fs.show();
+current_fs.hide();
+//hide the current fieldset with style
+current_fs.animate({opacity: 0}, {
+step: function(now) {
+// for making fielset appear animation
+opacity = 1 - now;
+
+current_fs.css({
+'display': 'none',
+'position': 'relative'
+});
+next_fs.css({'opacity': opacity});
+},
+duration: 600
+});
+});
+
+$(".previous").click(function(){
+
+current_fs = $(this).parent();
+previous_fs = $(this).parent().prev();
+
+//Remove class active
+$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+//show the previous fieldset
+previous_fs.show();
+current_fs.hide();
+
+//hide the current fieldset with style
+current_fs.animate({opacity: 0}, {
+step: function(now) {
+// for making fielset appear animation
+opacity = 1 - now;
+
+current_fs.css({
+'display': 'none',
+'position': 'relative'
+});
+previous_fs.css({'opacity': opacity});
+},
+duration: 600
+});
+});
+
+$('.radio-group .radio').click(function(){
+$(this).parent().find('.radio').removeClass('selected');
+$(this).addClass('selected');
+});
+
+$(".submit").click(function(){
+return false;
+})
+
+});
+
+$("#id_region").change(function(){
+  var id_region = $("#id_region").val();
+  $.post('acciones/filtrarComunas.php',{id_region:id_region},function(data){
+    $("#divComunas").html(data);
   });
 });
 
-$("#btnAsignarConductor").click(function(){
-  var id_conductor = $("#id_conductor").val();
-  var id_empresa = $("#id_empresa").val();
-  $.post('acciones/asignarConductor.php',{id_empresa:id_empresa,id_conductor:id_conductor},function(){
-    Swal.fire(
-    'Se asigno al conductor!',
-    '',
-    'success'
-    )
-  });
-    $("#empresaCo").html('');
-    $("#id_conductor").val('');
-    $("#id_empresa").val('');
-});
-
-$("#ddlEmpresaS").change(function(){
-  var op = $("#ddlEmpresaS").val();
-  if (op ==1)
+$("#servicio").change(function(){
+  var n = $("#servicio").val();
+  if (n == 1)
   {
-    $("#divEmpresa").css("display","block");
-    $("#divSucursal").css("display","none");
+    $("#divLeasing").css("display","block");
+    $("#divPropio").css("display","none");
+    console.log("el numero es "+1);
   }
-  else if (op ==2)
+  if (n == 2)
   {
-    $("#divEmpresa").css("display","none");
-    $("#divSucursal").css("display","block");
+    $("#divLeasing").css("display","none");
+    $("#divPropio").css("display","block");
+    console.log("el numero es "+2);
   }
-  else
+  if (n == '')
   {
-    $("#divEmpresa").css("display","none");
-    $("#divSucursal").css("display","none");
+    $("#divLeasing").css("display","nonoe");
+    $("#divPropio").css("display","none");
+    console.log("el numero es null");
   }
 });
 
-//Cantidad  sucrusales
-$("#btnCant").click(function(){
-  var cant = $("#cantSucursales").val();
-  for (var i = 1; i <=cant; i++)
+$("#tipo_leasing").change(function(){
+  var n = $("#tipo_leasing").val();
+  if (n == 1)
   {
-    $("#divCantidadSucursales").append('<div class="row mt-2"><h2>Sucursal '+i+'</h2><div class="col-md-12 col-sm-12"><hr><div class="row"><div class="col-md-6 col-sm-12"><select required class="form-control ah" name="id_empresa'+i+'" id="id_empresa'+i+'"></select></div></div><div class="row mt-2"><div class="col-md-6 col-sm-12"><input type="text" required class="form-control" placeholder="Direccion" name="direccion_sucursal'+i+'" id="direccion_sucursal'+i+'" value=""></div><div class="col-md-6 col-sm-12"><input type="text" class="form-control" placeholder="Nombre" name="nombre_sucursal'+i+'" required id="nombre_sucursal'+i+'" value=""></div></div></div></div>');
+    $("#div1").css("display","block");
+    $("#div2").css("display","none");
+    $("#div3").css("display","none");
+    console.log("el numero es "+1);
   }
-  $("#btnCant").prop("disabled",true);
-  $("#btnRegistrarEmpresa").prop("disabled",false);
-  //Llenar Empresas
-  $.post('acciones/traerEmpresas.php',function(data){
-    $(".ah").html(data);
-  });
+  if (n == 2)
+  {
+    $("#div1").css("display","none");
+    $("#div2").css("display","block");
+    $("#div3").css("display","none");
+    console.log("el numero es "+2);
+  }
+  if (n == 3)
+  {
+    $("#div1").css("display","none");
+    $("#div2").css("display","none");
+    $("#div3").css("display","block");
+    console.log("el numero es "+3);
+  }
+  if (n == '')
+  {
+    $("#div1").css("display","none");
+    $("#div2").css("display","none");
+    $("#div3").css("display","none");
+    console.log("el numero es null");
+  }
 });
 
-$("#id_vehiculo").change(function(){
-  $("#btnAsignar").prop("disabled",false);
-  var id_vehiculo = $("#id_vehiculo").val();
-  $.post('acciones/traerCapacidadAuto.php',{id_vehiculo:id_vehiculo},function(data){
-    $("#divCapacidadActual").html(data);
-  });
+
+//Llenar ddl paises
+$.post('acciones/traerPaises.php',function(data){
+ $("#ddlPaises").html(data);
 });
 
-function asignar()
-{
-  var total,capacidad, dimencion,id_vehiculo,id_orden;
-  id_vehiculo = $("#id_vehiculo").val();
-  id_orden = $("#hId_orden").val();
-  dimencion = $("#hDimencion").val();
-  capacidad = $("#hCapadidadActual").val();
-  total = capacidad - dimencion;
+$("#btnValidar1").click(function(){
+  var nombre = $("#nombre").val().length;
+  var apellido = $("#apellido").val().length;
+  var fecha = $("#fecha").val().length;
+  var telefono = $("#telefono").val().length;
+  var rut = $("#rut").val().length;
+  var iso_nac = $("#iso_nac").val().length;
+  var mail = $("#mail").val().length;
+  var bandera = false;
 
-  if (total >= 0)
+  if (nombre == '0')
   {
-    $.post('acciones/ajaxAsignar.php',{id_auto:id_vehiculo,id_orden:id_orden,total:total},function(){
-      window.location.href = '?c=Usuario&a=ListarOrden&m=ExitoAsignar';
-    });
+    bandera = true;
   }
-  else
+  if (apellido == '0')
+  {
+    bandera = true;
+  }
+  if (fecha == '0')
+  {
+    bandera = true;
+  }
+  if (telefono == '0')
+  {
+    bandera = true;
+  }
+  if (rut == '0')
+  {
+    bandera = true;
+  }
+  if (iso_nac == '0')
+  {
+    bandera = true;
+  }
+  if (mail == '0')
+  {
+    bandera = true;
+  }
+
+  if (bandera)
   {
     Swal.fire({
         type: 'error',
-        title: 'No hay espacio',
-        text: 'Error al asignar la orden de compra'
+        title: 'Faltan datos',
+        text: 'Faltan datos perosnales'
       });
   }
-}
-
-$("#id_conductor").change(function(){
-  var id = $("#id_conductor").val();
-  $.post('acciones/filtrar_entregas_conductores.php',{id:id},function(data){
-    $("#divTabla").html(data);
-  });
-});
-
-function GenerarMapa(num)
-{
-
-  var loc = 'https://www.google.cl/maps/dir/Del+Valle+601,+Huechuraba,+Región+Metropolitana';
-
-  function moveMapToBerlin(map){
-  map.setCenter({lat:52.5159, lng:13.3777});
-  map.setZoom(14);
-}
-
-/**
- * Boilerplate map initialization code starts below:
- */
-
-//Step 1: initialize communication with the platform
-// In your own code, replace variable window.apikey with your own apikey
-var platform = new H.service.Platform({
-  apikey:'bCeIxB7sq7cixX2aniJCW5t3I_naqWgdEIo_GijiDog'
-});
-var defaultLayers = platform.createDefaultLayers();
-
-//Step 2: initialize a map - this map is centered over Europe
-var map = new H.Map(document.getElementById('map'),
-  defaultLayers.vector.normal.map,{
-  center: {lat:-33.4718999, lng:-70.9100236},
-  zoom: 10,
-  pixelRatio: window.devicePixelRatio || 1
-});
-// add a resize listener to make sure that the map occupies the whole container
-window.addEventListener('resize', () => map.getViewPort().resize());
-
-//Step 3: make the map interactive
-// MapEvents enables the event system
-// Behavior implements default interactions for pan/zoom (also on mobile touch environments)
-var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-
-// Create the default UI components
-var ui = H.ui.UI.createDefault(map, defaultLayers);
-
-// Now use the map as required...
-window.onload = function () {
-  moveMapToBerlin(map);
-}
-
-  for (var i = 1; i <=num; i++) {
-    var direccion = $("#hDireccion"+i).val();
-    $.getJSON("https://us1.locationiq.com/v1/search.php?key=4a7c6e2ffc5f07&q="+direccion+"&format=json",function(data){
-
-        //Latitud y longitud de la direccion buscada
-        var lat = data[0].lat;
-        var lon = data[0].lon;
-        loc = loc +'/'+lat+','+lon;
-        //Creamos el marcador con  sus coordenadas
-        var mark = new H.map.Marker({lat:lat, lng: lon});
-        //Agregamos en el mapa el marcador
-        map.addObject(mark);
-        $("#hLoc").val(loc);
-        $("#hLat").val(lat);
-        $("#hLon").val(lon);
-    });
-
-
-      alert('Se agrego la direccion: '+direccion);
+  else {
+    $("#btn1").css('display','block');
+    $("#btnValidar1").css('display','none');
   }
-  $("#hLoc").val(loc);
-  $("#btnGuardarRuta").prop("disabled",false);
-}
 
-function GuardarRuta()
-{
-  var id_auto = $("#hId_auto").val();
-  var ruta = $("#hLoc").val();
-  console.log(id_auto);
-  $.post('acciones/cambiarRuta.php',{id_auto:id_auto,ruta:ruta},function(){
-    Swal.fire(
-    'Se asigno la ruta al conductor!',
-    '',
-    'success'
-    )
-  });
-}
+});
 
+$("#btnValidar2").click(function(){
 
-function finalizar(id)
-{
-  $.post('acciones/finalizar.php',{id:id},function(){
-    window.location.href = "?c=Usuario&a=Dashboard&m=finalizo";
-  });
-}
-//Validar rut
+  var id_pais = $("#id_pais").val().length;
+  var tipo_licencia = $("#tipo_licencia").val().length;
+  var fecha_emision = $("#fecha_emision").val().length;
+  var fecha_vencimiento = $("#fecha_vencimiento").val().length;
+  var bandera = false;
 
-function checkRut(rut) {
-// Se quitan los puntos y los guiones mediante el metodo replace
-var valor = rut.value.replace('.','');
-valor = valor.replace('-','');
-
-// Aislar Cuerpo y Dígito Verificador
-var cuerpo = valor.slice(0,-1);
-var dv = valor.slice(-1).toUpperCase();
-
-// Formatear rut
-rut.value = cuerpo +'-'+ dv;
-
-// Si no cumple con el mínimo ej. (n.nnn.nnn)
-if(cuerpo.length < 7) {
-$("#fg_rut").addClass('has-error');
-    rut.setCustomValidity("RUT Incompleto");
-return false;
-}
-
-// Calcular Dígito Verificador
-var suma = 0;
-var multiplo = 2;
-
-// Para cada dígito del Cuerpo
-for(var i=1;i<=cuerpo.length;i++) {
-
-    // Obtener su Producto con el Múltiplo Correspondiente
-    var index = multiplo * valor.charAt(cuerpo.length - i);
-
-    // Sumar al Contador General
-    suma = suma + index;
-
-    // Consolidar Múltiplo dentro del rango [2,7]
-    if(multiplo < 7) {
-        multiplo = multiplo + 1;
-    }else{
-        multiplo = 2;
-    }
-}
-
-// se calcula el dv con modulo 11
-var dvEsperado = 11 - (suma % 11);
-
-// Casos Especiales (0 y K)
-if(dv == 'K'){
-    dv = 10;
-}else{
-    dv=dv;
-}
-if(dv == 0){
-   dv = 11;
-}else{
-   dv = dv;
-}
-
-// Validar que el Cuerpo coincide con su Dígito Verificador
-if(dvEsperado != dv){
-    rut.setCustomValidity("RUT Inválido");
-$("#fg_rut").addClass('has-error');
-return false;
-}
-
-
-
-
-//se resetea el setCustomValidity en caso de haber ocurrido alguna ocurrencia en el if
-rut.setCustomValidity('');
-}
-
-
-$("#btnRecibir").click(function(){
-  if ($("#acepto").val() == null)
+  if (id_pais == '0')
   {
-    alert("Check box in Checked");
+    bandera = true;
+  }
+  if (tipo_licencia == '0')
+  {
+    bandera = true;
+  }
+  if (fecha_emision == '0')
+  {
+    bandera = true;
+  }
+  if (fecha_vencimiento == '0')
+  {
+    bandera = true;
+  }
+
+  if (bandera)
+  {
+    Swal.fire({
+        type: 'error',
+        title: 'Faltan datos',
+        text: 'Faltan datos de la licencia'
+      });
+  }
+  else
+  {
+    $("#btn2").css('display','block');
+    $("#btnValidar2").css('display','none');
   }
 });
 
-$(document).ready(function() {
-  $("#signature").jSignature({color:"#00f",lineWidth:2,height:300});
+$("#btnValidar3").click(function(){
+  var id_tipo_vehiculo = $("#id_tipo_vehiculo").val().length;
+  var capacidad = $("#capacidad").val().length;
+  var marca = $("#marca").val().length;
+  var modelo = $("#modelo").val().length;
+  var anio = $("#anio").val().length;
+  var bandera = false;
+
+  if (id_tipo_vehiculo == '0')
+  {
+      bandera = true;
+  }
+  if (capacidad == '0')
+  {
+      bandera = true;
+  }
+  if (marca == '0')
+  {
+      bandera = true;
+  }
+  if (modelo == '0')
+  {
+      bandera = true;
+  }
+  if (anio == '0')
+  {
+      bandera = true;
+  }
+
+  if (bandera)
+  {
+    Swal.fire({
+        type: 'error',
+        title: 'Faltan datos',
+        text: 'Faltan los datos del vehiculo'
+      });
+  }
+  else {
+    $("#btn3").css('display','block');
+    $("#btnValidar3").css('display','none');
+  }
 });
-function importImg(sig)
-{
-	sig.children("img.imported").remove();
-	$("<img class='imported'></img").attr("src",sig.jSignature('getData')).appendTo(sig);
-  $("#hFirma").val(sig.jSignature('getData'));
-
-}
-function importData(sig,url)
-{
-	if ($.trim(url)) {
-		sig.jSignature('importData',url);
-	}
-}
-
-$(function(){
-  var url = $("#hFirma").val();
-  importData($("#signature"),url);
-})

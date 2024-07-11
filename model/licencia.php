@@ -8,6 +8,7 @@ class Licencia
   public $id_pais;
   public $fecha_emision;
   public $fecha_vencimiento;
+  public $tipo_licencia;
 
 
 
@@ -25,8 +26,8 @@ class Licencia
 
    public function insert($l)
    {
-     $sql = $this->conn->prepare("INSERT INTO licencia(id_pais,fecha_emision,fecha_vencimiento) values(?,?,?)");
-     $sql->execute(array($l->id_pais,$l->fecha_emision,$l->fecha_vencimiento));
+     $sql = $this->conn->prepare("INSERT INTO licencia(id_pais,fecha_emision,fecha_vencimiento,tipo_licencia) values(?,?,?,?)");
+     $sql->execute(array($l->id_pais,$l->fecha_emision,$l->fecha_vencimiento,$l->tipo_licencia));
    }
    public function Listar()
    {
@@ -46,11 +47,6 @@ class Licencia
      $sql = $this->conn->prepare("SELECT max(id_licencia) id from licencia");
      $sql->execute();
      return $sql->fetch(PDO::FETCH_OBJ);
-   }
-   public function BorrarTodo()
-   {
-     $sql = $this->conn->prepare("truncate table licencia");
-     $sql->execute();
    }
 }
 

@@ -1,0 +1,2 @@
+[17-Feb-2020 14:57:01 UTC] PHP Fatal error:  Call to undefined method mysqli_result::fetch() in /home/fhpchile/public_html/accionesApp/login.php on line 21
+[17-Feb-2020 14:57:23 UTC] PHP Fatal error:  Call to undefined method mysqli_result::fetch() in /home/fhpchile/public_html/accionesApp/login.php on line 21
