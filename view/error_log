@@ -1,0 +1,2 @@
+[02-Mar-2020 13:13:52 UTC] PHP Fatal error:  Call to a member function Listar() on null in /home/fhpchile/public_html/admin/view/solicitudConductores.php on line 46
+[02-Mar-2020 13:14:02 UTC] PHP Fatal error:  Call to a member function Listar() on null in /home/fhpchile/public_html/admin/view/solicitudConductores.php on line 46
